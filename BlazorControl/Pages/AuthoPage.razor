@@ -22,7 +22,7 @@
     {
         User foundedUser;
 
-        if(user.Login == "" || user.Password == "")
+            if (String.IsNullOrEmpty(user.Login) || String.IsNullOrEmpty(user.Password))
         {
             await JS.InvokeVoidAsync("alert", "Not all fields are written!");
             return;
