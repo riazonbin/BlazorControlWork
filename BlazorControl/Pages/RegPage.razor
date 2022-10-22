@@ -37,6 +37,11 @@
             await JS.InvokeVoidAsync("alert", "Passwords are not the same!");
             return;
         }
+        if(MongoDBConnection.FindByLogin(user.Login) is not null)
+        {
+            await JS.InvokeVoidAsync("alert", "Such login already exists!");
+            return;
+        }
 
         MongoDBConnection.AddToDataBase(user);
         user = new User();
