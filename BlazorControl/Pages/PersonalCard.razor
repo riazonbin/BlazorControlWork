@@ -17,8 +17,13 @@
             <p>Last name: @MongoDBConnection.currentUser.LastName</p>
             <p>Email: @MongoDBConnection.currentUser.Email</p>
         </div>
+        <button @onclick="() => LoginOut()">Login out</button>
     </div>   
 }
 
 @code {
+    private void LoginOut()
+    {
+        MongoDBConnection.currentUser = null;
+    }
 }
