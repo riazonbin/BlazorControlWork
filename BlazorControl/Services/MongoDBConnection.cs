@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using BlazorControl.Data;
 
-namespace MongoDBLink
+namespace BlazorControl.Services
 {
     public static class MongoDBConnection
     {
+        public static User? currentUser;
+
         public static void AddToDataBase(User user)
         {
             var client = new MongoClient("mongodb://localhost");
@@ -19,10 +21,10 @@ namespace MongoDBLink
             collection.InsertOne(user);
         }
 
-        public static User FindById(string id)
+        public static User FindByLogin(string login)
         {
             var client = new MongoClient("mongodb://localhost");
-            var filter = Builders<User>.Filter.Eq("_id", ObjectId.Parse(id));
+            var filter = Builders<User>.Filter.Eq("Login", login);
             var database = client.GetDatabase("BlazorControlZaripov");
             var collection = database.GetCollection<User>("UserCollection");
             return collection.Find(filter).FirstOrDefault();

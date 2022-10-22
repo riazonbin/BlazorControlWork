@@ -1,11 +1,12 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace BlazorControl.Data
 {
     public class User
     {
         [BsonId]
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
         public string Login { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

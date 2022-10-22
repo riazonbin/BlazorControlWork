@@ -1,17 +1,23 @@
 ﻿@using BlazorControl.Data
-@using MongoDBLink
+@using BlazorControl.Services
 
 <EditForm Model="@user" >
 
     <p>Login:</p> <InputText @bind-Value="@user.Login" @onchange="@((ChangeEventArgs e) => user.Login = e.Value.ToString())"></InputText>
     <p>Password:</p> <InputText @bind-Value="@user.Password" @onchange="@((ChangeEventArgs e) => user.Password = e.Value.ToString())"></InputText>
     <p>Repeat password:</p> <InputText @bind-Value="@user.Password" @onchange="@((ChangeEventArgs e) => user.Password = e.Value.ToString())"></InputText>
+    <p>Email:</p> <InputText @bind-Value="@user.Email" @onchange="@((ChangeEventArgs e) => user.Email = e.Value.ToString())"></InputText>
     <p>First Name:</p> <InputText @bind-Value="@user.FirstName" @onchange="@((ChangeEventArgs e) => user.FirstName = e.Value.ToString())"></InputText>
     <p>Last Name:</p> <InputText @bind-Value="@user.LastName" @onchange="@((ChangeEventArgs e) => user.LastName = e.Value.ToString())"></InputText>
 
-    <button name="Sing up!" onclick="@MongoDBLink"
+     <button ="IncrementCount()">Registrate</button>
 </EditForm>
 
 @code {
     User user = new User();
+
+    private void AddToDB(User user)
+    {
+        MongoDBConnection.AddToDataBase(user);
+    }
 }
